@@ -18,7 +18,6 @@ Pipejump = {
         jqXHR.setRequestHeader('X-Pipejump-Auth', Pipejump.token)
       }
     }).success(function(data){
-      Pipejump.setContactsCollection(data)
       success(data)
     })
   },
@@ -37,6 +36,9 @@ Pipejump = {
   },
   getContacts: function(options, success) {
     if (!options) options = { page: 1 }
-    this.get('/api/sales/contacts.json?page=1', success)
+    this.get('/api/sales/contacts.json?page=1', function(data) {
+      Pipejump.setContactsCollection(data)
+      success(data)
+    })
   }
 }

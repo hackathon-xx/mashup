@@ -40,22 +40,6 @@ var installContactEvents = function(){
       container.hide()
     }
   })
-  $('ul.contacts li .social-tabs li.twitter').live('click', function(){
-     var li = $(this)
-     var output = li.find('.output')
-     output.html("Loading...")
-     var contact_id = li.parents('li').find('span').attr('rel')
-     var found = Pipejump.getContact(contact_id)
-     // console.log(found.contact.name)
-     // console.log( li.parents('li').find('span').attr('rel') )
-     // Twitter.getUserInfo(found.contact.twitter, function(data) {
-     //   output.render('contact-twitter-details', data)
-     // })
-     // $.getJSON('http://search.twitter.com/search.json?q=futuresimple&callback=?', function(data) {
-       // console.log(data)
-       // output.html(data)
-     // })
-   })
 
 }
 
