@@ -32,6 +32,7 @@ var installContactEvents = function(){
       var found = Pipejump.getContact(contact_id)
       Flickr.search(found.contact.name, function(data) {
         container.find('.flickr-photos').render('flickr-photos', { photos: data.photos.photo })
+        $('.flickr-photos li a').lightBox({fixedNavigation:true});
       })
       Twitter.getUserInfo(found.contact.twitter, function(data) {
         container.find('.twitter-details').render('contact-twitter-details', data)

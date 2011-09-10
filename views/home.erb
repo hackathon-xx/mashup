@@ -9,7 +9,11 @@
   <script src="/scripts/twitter.js" type="text/javascript" charset="utf-8"></script>
   <script src="/scripts/flickr.js" type="text/javascript" charset="utf-8"></script>
   <script src="/scripts/application.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/lightbox-0.5.min.js" type="text/javascript" charset="utf-8"></script>
+  
   <link rel="stylesheet" href="/styles/main.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/styles/lightbox.css" type="text/css" media="screen" />
+  
 </head>
 <body>
 
@@ -62,7 +66,9 @@
   <script id="flickr-photos-template" type="text/x-handlebars-template">
     {{#each photos}}
       <li>
-        <img src="http://farm{{this.farm}}.static.flickr.com/{{this.server}}/{{this.id}}_{{this.secret}}_s.jpg" />
+        <a href="http://farm{{this.farm}}.static.flickr.com/{{this.server}}/{{this.id}}_{{this.secret}}_z.jpg">
+          <img src="http://farm{{this.farm}}.static.flickr.com/{{this.server}}/{{this.id}}_{{this.secret}}_s.jpg" />
+        </a>
       </li>
     {{/each}}
   </script>
