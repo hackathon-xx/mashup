@@ -15,7 +15,7 @@ ul,ol { list-style:none; }
 
 /* avoid browser default inconsistent heading font-sizes */
 /* and pre/code too */
-h1,h2,h3,h4,h5,h6,pre,code { font-size:1em; }
+h1,h2,h3,h4,h5,h6,pre,code { font-size:1em;; }
 
 /* remove the inconsistent (among browsers) default ul,ol padding or margin  */
 /* the default spacing on headings does not match nor align with
@@ -44,9 +44,32 @@ body {
   padding-bottom: 10px;
 }
 
+
+#top,
 #container {
   width: 960px;
   margin: 0 auto;
+}
+
+#top {
+}
+
+#top .login {
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+  text-align: right;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #333;
+}
+
+#top .login a {
+  cursor: pointer;
+}
+
+#top .linked-in {
+  float: left;
 }
 
 .loader {
@@ -87,4 +110,74 @@ body {
   border: 1px solid #ccc;
   margin-top: 10px;
   padding: 10px;
+}
+
+.login {
+  padding-top: 20px;
+}
+
+.login .logo {
+  text-align: center;
+}
+
+.login .form {
+  border: 1px solid #ccc;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 20px;
+  font-size: 12px;
+  padding: 5px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.login .form input {
+  width: 300px;
+}
+
+.login .form .submit {
+  margin-top: 10px;
+  text-align: right;
+}
+.login .form .submit input {
+  width: 100px;
+}
+
+.twitter td {
+  vertical-align: top;
+}
+.twitter .image {
+  width: 64px;
+}
+
+.twitter .url,
+.twitter .location,
+.twitter .description {
+  font-size: 12px;
+}
+
+.twitter .tweet {
+  border: 1px solid #ccc;
+  background-color: #eee;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.twitter .info {
+  font-size: 12px;
+}
+
+.linkedin-details .description {
+  margin-top: 5px;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.flickr-photos ul {
+  margin-top: 10px;
+}
+
+.contact-info {
+  margin-top: -5px;
 }

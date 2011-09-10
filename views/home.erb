@@ -1,17 +1,18 @@
 <html>
 <head>
-  <script src="/scripts/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/scripts/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/scripts/jquery.extensions.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/scripts/handlebars.1.0.0.beta.3.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/scripts/template.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/scripts/pipejump.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/scripts/twitter.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/scripts/flickr.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/scripts/spin.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/scripts/linkedin.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/scripts/application.js" type="text/javascript" charset="utf-8"></script>
-  <script src="/scripts/lightbox-0.5.min.js" type="text/javascript" charset="utf-8"></script>
+  <% now = Time.now.to_i %>
+  <script src="/scripts/jquery.min.js?<%= now %>" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/jquery.cookie.js?<%= now %>" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/jquery.extensions.js?<%= now %>" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/handlebars.1.0.0.beta.3.js?<%= now %>" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/template.js?<%= now %>" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/pipejump.js?<%= now %>" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/twitter.js?<%= now %>" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/flickr.js?<%= now %>" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/spin.js?<%= now %>" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/linkedin.js?<%= now %>" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/application.js?<%= now %>" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/lightbox-0.5.min.js?<%= now %>" type="text/javascript" charset="utf-8"></script>
 
   <link rel="stylesheet" href="/styles/main.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="/styles/lightbox.css" type="text/css" media="screen" />
@@ -24,17 +25,23 @@
 </head>
 <body>
 
-  <div id="container">
+  <div id="top"></div>
 
+  <div id="container">
   </div>
 
   <script id="login-template" type="text/x-handlebars-template">
     <form class="login">
-      <div>Email</div>
-      <input type="text" name="email" />
-      <div>Password</div>
-      <input type="password" name="password" />
-      <div><input type="submit" value="Log in" /></div>
+      <div class="logo">
+        <img src="/images/pipejump.jpeg" />
+      </div>
+      <div class="form">
+        <div>Email</div>
+        <input type="text" name="email" />
+        <div>Password</div>
+        <input type="password" name="password" />
+        <div class="submit"><input type="submit" value="Log in" /></div>
+      </div>
     </form>
   </script>
 
@@ -53,32 +60,48 @@
 
   <script id="contacts-container-template" type="text/x-handlebars-template">
     <div class="contacts-container">
-      <div class="section">
-        <h3><img src="/images/google_32.png" /> {{contact.contact.email}}</h3>
+      <div class="contact-info">
+        <div class="section"~>
+          <h3><img src="/images/google_32.png" /> {{contact.contact.email}}</h3>
+        </div>
+        <div class="section">
+          <h3><img src="/images/twitter_32.png" /> {{contact.contact.twitter}}</h3>
+          <p></p>
+        </div>
+        <div class="section">
+          <h3><img src="/images/linkedin_32.png" />  {{contact.contact.linkedin}}</h3>
+          <p></p>
+        </div>
+        <div class="clear"></div>
       </div>
-      <div class="section">
-        <h3><img src="/images/twitter_32.png" /> {{contact.contact.twitter}}</h3>
-        <p></p>
-      </div>
-      <div class="section">
-        <h3><img src="/images/linkedin_32.png" />  {{contact.contact.linkedin}}</h3>
-        <p></p>
-      </div>
-      <div class="section">
-        <h3><img src="/images/facebook_32.png" />  {{contact.contact.facebook}}</h3>
-        <p></p>
-      </div>
-      <div class="clear"></div>
       <div class="details twitter-details"></div>
+      <div class="details linkedin-details"></div>
       <div class="details flickr-photos"></ul>
     </div>
   </script>
 
   <script id="contact-twitter-details-template" type="text/x-handlebars-template">
     <div class="details">
-      <p><img src="/images/twitter.gif" /></p>
-      <p><img src="{{profile_image_url_https}}" /></p>
-      <p>{{location}}</p>
+      <table class="twitter">
+        <tr>
+          <td class="image">
+            <p><img src="{{profile_image_url_https}}" /></p>
+          </td>
+          <td>
+            <p class="url">{{location}}, {{url}}</p>
+            <p class="description">{{description}}</p>
+            <p class="tweet"><b>@{{screen_name}}</b> {{status.text}}</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </script>
+
+  <script id="linkedin-details-template" type="text/x-handlebars-template">
+    <div class="details">
+      <p><img src="/images/linkedin.gif" /></p>
+      <p class="description">{{description}}</p>
+
     </div>
   </script>
 

@@ -2,9 +2,9 @@ LinkedIn = {
   search: function(term, success) {
     if (/^\/in\//.test(term)) {
       this.lookupPerson(term, success)
-    } else if (/^\/company\/\d+$/.test(term)) {
+    } else if (/company\/\d+$/.test(term)) {
       this.lookupCompanyById(term, success)
-    } else if (/^\/company\//.test(term)) {
+    } else if (/company\//.test(term)) {
       this.lookupCompanyByName(term, success)
     }
   },
