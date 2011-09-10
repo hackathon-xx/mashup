@@ -21,10 +21,10 @@ Pipejump = {
       Pipejump.setContactsCollection(data)
       success(data)
     })
-  }, 
+  },
   setContactsCollection: function(contacts){
-    Pipejump.contacts_collection = contacts;    
-  }, 
+    Pipejump.contacts_collection = contacts;
+  },
   getContactsCollection: function(){
     return Pipejump.contacts_collection;
   },
@@ -41,50 +41,25 @@ Pipejump = {
   }
 }
 
-jQuery.fn.extractParams = function() {
-  var params = {}
-  $.each($(this).serializeArray(), function(index, field) {
-    if (field.name) {
-      params[field.name] = field.value
-    }
+var displayContactList = function() {
+  $('#container').html('Loading...')
+  Pipejump.getContacts({}, function(contacts) {
+    $('#container').render('contacts', { contacts: contacts })
   })
-  return params;
-}
-
-jQuery.fn.render = function(name, options) {
-  var html = Template.render(name, options)
-  $(this).html(html)
 };
-
-var Template = {
-  collection: {},
-  loadAll: function() {
-    var scripts = $('script[type="text/x-handlebars-template"]')
-    $.each(scripts, function(index, script) {
-      Template.collection[script.id.replace(/\-template/, '')] = Handlebars.compile(script.innerHTML);
-    })
-  },
-  render: function(name, context, options) {
-    return this.collection[name](context, options)
-  }
-}
-
- var displayContactList = function() {
-   $('#container').html('Loading...')
-   Pipejump.getContacts({}, function(contacts) {
-     $('#container').render('contacts', { contacts: contacts })
-   })
- };
 
 var displayLoginBox = function() {
   $('#container').render('login')
   $('.login').submit(function() {
     var params = $(this).extractParams()
+    var token = Pipejump.login(params.email, params.password)
+
     Pipejump.login(params.email, params.password, function() {
       displayContactList()
     }, function() {
       alert('wrong!')
     })
+
     return false
   })
 }
