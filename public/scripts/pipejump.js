@@ -1,5 +1,6 @@
 Pipejump = {
   token: null,
+  contacts_collection: [],
   logout: function() {
     $.cookie('pipejump_token', null)
   },
@@ -17,7 +18,23 @@ Pipejump = {
       beforeSend: function(jqXHR) {
         jqXHR.setRequestHeader('X-Pipejump-Auth', Pipejump.token)
       }
-    }).success(success)
+    }).success(function(data){
+      Pipejump.setContactsCollection(data)
+      success(data)
+    })
+  }, 
+  setContactsCollection: function(contacts){
+    Pipejump.contacts_collection = contacts;    
+  }, 
+  getContactsCollection: function(){
+    return Pipejump.contacts_collection;
+  },
+  getContact: function(contact_id){
+    result = null
+    $.each(Pipejump.getContactsCollection(),function(index, element){
+     if (element.contact.id*1==contact_id*1) {result = element;}
+    })
+    return result;
   }
 }
 
@@ -49,16 +66,15 @@ var Template = {
   }
 }
 
-var displayContactList = function() {
-  $('#container').html('Loading...')
-  Pipejump.getContacts({}, function(contacts) {
-    $('#container').render('contacts', { contacts: contacts })
-  })
-};
+ var displayContactList = function() {
+   $('#container').html('Loading...')
+   Pipejump.getContacts({}, function(contacts) {
+     $('#container').render('contacts', { contacts: contacts })
+   })
+ };
 
 var displayLoginBox = function() {
   $('#container').render('login')
-
   $('.login').submit(function() {
     var params = $(this).extractParams()
     Pipejump.login(params.email, params.password, function() {
@@ -70,14 +86,29 @@ var displayLoginBox = function() {
   })
 }
 
+var installContactEvents = function(){
+  $('ul.contacts li.name').live('click', function(){
+     $('ul.contacts li.name').toggle(function(){
+       var contact_id = $(this).attr('rel');
+       if ($( "#contact-"+contact_id).is(':hidden')){
+         $( "#contact-"+contact_id ).show()
+       }
+       $( "#contact-"+contact_id ).render('contacts-container', { contact: Pipejump.getContact(contact_id)});
+     }, function(){
+        var contact_id = $(this).attr('rel');
+        $( "#contact-"+contact_id ).hide()
+     })
+   })
+}
+
 $(function() {
   Template.loadAll();
-
   var token = $.cookie('pipejump_token')
 
   if (token) {
     Pipejump.token = token
     displayContactList()
+    installContactEvents()
   } else {
     displayLoginBox()
   }

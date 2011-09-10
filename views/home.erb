@@ -24,9 +24,24 @@
   <script id="contacts-template" type="text/x-handlebars-template">
     <ul class="contacts">
       {{#each contacts}}
-        <li>{{this.contact.name}}</li>
+        <li class='name' rel='{{this.contact.id}}'>
+          {{this.contact.name}}
+          <div id="contact-{{this.contact.id}}"> 
+          </div>
+        </li>
       {{/each}}
     </ul>
+  </script>
+  
+  <script id="contacts-container-template" type="text/x-handlebars-template">
+    <div class="contacts-container">
+      <ul class="social-tabs">
+        <li class='name'>Email: {{contact.contact.email}}</li>      
+        <li class='name'>Twitter: {{contact.contact.twitter}}</li>
+        <li class='name'>Facebook: {{contact.contact.facebook}}</li>      
+        <li class='name'>LinkedIn: {{contact.contact.linkedin}}</li>
+      </ul>
+    </div>
   </script>
 
 </body>
