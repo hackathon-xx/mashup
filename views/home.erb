@@ -6,7 +6,10 @@
   <script src="/scripts/handlebars.1.0.0.beta.3.js" type="text/javascript" charset="utf-8"></script>
   <script src="/scripts/template.js" type="text/javascript" charset="utf-8"></script>
   <script src="/scripts/pipejump.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/twitter.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/flickr.js" type="text/javascript" charset="utf-8"></script>
   <script src="/scripts/application.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" media="screen" />
 </head>
 <body>
 
@@ -27,24 +30,41 @@
   <script id="contacts-template" type="text/x-handlebars-template">
     <ul class="contacts">
       {{#each contacts}}
-        <li class='name' >
+        <li>
           <span rel='{{this.contact.id}}'>{{this.contact.name}}</span>
-          <div id="contact-{{this.contact.id}}"> 
+          <div id="contact-{{this.contact.id}}">
           </div>
         </li>
       {{/each}}
     </ul>
   </script>
-  
+
   <script id="contacts-container-template" type="text/x-handlebars-template">
     <div class="contacts-container">
       <ul class="social-tabs">
-        <li class='email'>Email: {{contact.contact.email}}</li>      
-        <li class='twitter'>Twitter: {{contact.contact.twitter}}</li>
-        <li class='facebook'>Facebook: {{contact.contact.facebook}}</li>      
+        <li class='email'>Email: {{contact.contact.email}}</li>
+        <li class='twitter'>Twitter: {{contact.contact.twitter}}<div class="output"></div></li>
+        <li class='facebook'>Facebook: {{contact.contact.facebook}}</li>
         <li class='linkedin'>LinkedIn: {{contact.contact.linkedin}}</li>
       </ul>
+      <div class="twitter-details"></div>
+      <ul class="flickr-photos"></ul>
     </div>
+  </script>
+
+  <script id="contact-twitter-details-template" type="text/x-handlebars-template">
+    <div class="details">
+      <p><img src="{{profile_image_url_https}}" /></p>
+      <p>{{location}}</p>
+    </div>
+  </script>
+
+  <script id="flickr-photos-template" type="text/x-handlebars-template">
+    {{#each photos}}
+      <li>
+        <img src="http://farm{{this.farm}}.static.flickr.com/{{this.server}}/{{this.id}}_{{this.secret}}_s.jpg" />
+      </li>
+    {{/each}}
   </script>
 
 </body>

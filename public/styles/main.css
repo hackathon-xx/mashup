@@ -1,0 +1,7 @@
+.flickr-photos li {
+  float: left;
+}
+
+.contacts > li {
+  clear: both;
+}
