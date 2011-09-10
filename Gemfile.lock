@@ -3,7 +3,6 @@ GEM
   specs:
     daemons (1.1.4)
     eventmachine (0.12.10)
-    oauth (0.4.5)
     rack (1.3.2)
     shotgun (0.9)
       rack (>= 1.0)
@@ -20,7 +19,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  oauth
   shotgun
   sinatra
   thin
