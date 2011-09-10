@@ -1,5 +1,6 @@
 var displayContactList = function() {
-  $('#container').html('Loading...')
+  $('#container').html('<div class="loader">Loading...</div>')
+  Spinner.default.spin($('.loader').get(0))
   Pipejump.getContacts({}, function(contacts) {
     $('#container').render('contacts', { contacts: contacts })
   })
@@ -22,7 +23,7 @@ var displayLoginBox = function() {
 }
 
 var installContactEvents = function(){
-  $('ul.contacts > li span').live('click', function(){
+  $('ul.contacts > li a').live('click', function(){
     var self = $(this)
     var contact_id = $(this).attr('rel');
     var container = $( "#contact-"+contact_id)
@@ -31,7 +32,7 @@ var installContactEvents = function(){
       container.show()
       var found = Pipejump.getContact(contact_id)
       Flickr.search(found.contact.name, function(data) {
-        container.find('.flickr-photos').render('flickr-photos', { photos: data.photos.photo })
+        container.find('.flickr-photos').render('flickr-photos', { photos: data.photos.photo.slice(0, 22) })
         $('.flickr-photos li a').lightBox({fixedNavigation:true});
       })
       Twitter.getUserInfo(found.contact.twitter, function(data) {
@@ -40,6 +41,7 @@ var installContactEvents = function(){
     } else {
       container.hide()
     }
+    return false;
   })
 
 }

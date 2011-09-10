@@ -8,6 +8,7 @@
   <script src="/scripts/pipejump.js" type="text/javascript" charset="utf-8"></script>
   <script src="/scripts/twitter.js" type="text/javascript" charset="utf-8"></script>
   <script src="/scripts/flickr.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/spin.js" type="text/javascript" charset="utf-8"></script>
   <script src="/scripts/linkedin.js" type="text/javascript" charset="utf-8"></script>
   <script src="/scripts/application.js" type="text/javascript" charset="utf-8"></script>
   <script src="/scripts/lightbox-0.5.min.js" type="text/javascript" charset="utf-8"></script>
@@ -41,9 +42,10 @@
     <ul class="contacts">
       {{#each contacts}}
         <li>
-          <span rel='{{this.contact.id}}'>{{this.contact.name}}</span>
+          <a rel='{{this.contact.id}}'>{{this.contact.name}}</a>
           <div id="contact-{{this.contact.id}}">
           </div>
+          <div class="clear"></div>
         </li>
       {{/each}}
     </ul>
@@ -51,25 +53,39 @@
 
   <script id="contacts-container-template" type="text/x-handlebars-template">
     <div class="contacts-container">
-      <ul class="social-tabs">
-        <li class='email'>Email: {{contact.contact.email}}</li>
-        <li class='twitter'>Twitter: {{contact.contact.twitter}}<div class="output"></div></li>
-        <li class='facebook'>Facebook: {{contact.contact.facebook}}</li>
-        <li class='linkedin'>LinkedIn: {{contact.contact.linkedin}}</li>
-      </ul>
-      <div class="twitter-details"></div>
-      <ul class="flickr-photos"></ul>
+      <div class="section">
+        <h3><img src="/images/google_32.png" /> {{contact.contact.email}}</h3>
+      </div>
+      <div class="section">
+        <h3><img src="/images/twitter_32.png" /> {{contact.contact.twitter}}</h3>
+        <p></p>
+      </div>
+      <div class="section">
+        <h3><img src="/images/linkedin_32.png" />  {{contact.contact.linkedin}}</h3>
+        <p></p>
+      </div>
+      <div class="section">
+        <h3><img src="/images/facebook_32.png" />  {{contact.contact.facebook}}</h3>
+        <p></p>
+      </div>
+      <div class="clear"></div>
+      <div class="details twitter-details"></div>
+      <div class="details flickr-photos"></ul>
     </div>
   </script>
 
   <script id="contact-twitter-details-template" type="text/x-handlebars-template">
     <div class="details">
+      <p><img src="/images/twitter.gif" /></p>
       <p><img src="{{profile_image_url_https}}" /></p>
       <p>{{location}}</p>
     </div>
   </script>
 
   <script id="flickr-photos-template" type="text/x-handlebars-template">
+    <p><img src="/images/flickr.gif" /></p>
+
+    <ul>
     {{#each photos}}
       <li>
         <a href="http://farm{{this.farm}}.static.flickr.com/{{this.server}}/{{this.id}}_{{this.secret}}_z.jpg">
@@ -77,6 +93,8 @@
         </a>
       </li>
     {{/each}}
+    </ul>
+    <div class="clear"></div>
   </script>
 
 </body>
