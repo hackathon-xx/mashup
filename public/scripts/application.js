@@ -40,7 +40,6 @@ var installContactEvents = function(){
         $('.flickr-photos li a').lightBox({fixedNavigation:true});
       })
       Twitter.getUserInfo(found.contact.twitter, function(data) {
-        console.log(data)
         container.find('.twitter-details').render('contact-twitter-details', data)
       })
       LinkedIn.search(found.contact.linkedin, function(data){
