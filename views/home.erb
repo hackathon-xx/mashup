@@ -1,0 +1,33 @@
+<html>
+<head>
+  <script src="/scripts/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/handlebars.1.0.0.beta.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/scripts/pipejump.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+
+  <div id="container">
+
+  </div>
+
+  <script id="login-template" type="text/x-handlebars-template">
+    <form class="login">
+      <div>Email</div>
+      <input type="text" name="email" />
+      <div>Password</div>
+      <input type="password" name="password" />
+      <div><input type="submit" value="Log in" /></div>
+    </form>
+  </script>
+
+  <script id="contacts-template" type="text/x-handlebars-template">
+    <ul class="contacts">
+      {{#each contacts}}
+        <li>{{this.contact.name}}</li>
+      {{/each}}
+    </ul>
+  </script>
+
+</body>
+</html>
