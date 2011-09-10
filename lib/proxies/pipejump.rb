@@ -3,10 +3,7 @@ get "/api/sales/*" do |url|
   url = URI.parse("https://sales.futuresimple.com/api/v1/#{url}")
   puts "Looking up #{url}"
   headers = {}
-  # puts "=" * 100
-  # puts request['X-Pipejump-Auth']
-  # puts request.inspect
-  headers['X-Pipejump-Auth'] = params["token"] # request['X-Pipejump-Auth'].to_s
+  headers['X-Pipejump-Auth'] = request.env['HTTP_X_PIPEJUMP_AUTH'].to_s
   req = Net::HTTP::Get.new(url.path, headers)
   http = Net::HTTP.new(url.host, url.port)
   http.use_ssl = true
@@ -20,7 +17,7 @@ post "/api/sales/*" do |url|
   url = URI.parse("https://sales.futuresimple.com/api/v1/#{url}")
   puts "Looking up #{url}"
   headers = {}
-  headers['X-Pipejump-Auth'] = request['X-Pipejump-Auth'].to_s
+  headers['X-Pipejump-Auth'] = request.env['HTTP_X_PIPEJUMP_AUTH'].to_s
   req = Net::HTTP::Post.new(url.path, headers)
   req.set_form_data(request.POST)
   http = Net::HTTP.new(url.host, url.port)

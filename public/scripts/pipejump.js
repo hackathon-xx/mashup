@@ -9,15 +9,18 @@ Pipejump = {
       $.cookie('pipejump_token', Pipejump.token)
     }, 'json').success(success).error(failure)
   },
-  getContacts: function(options, success) {
-    if (!options) options = { page: 1 }
+  get: function(url, success, failure) {
     $.ajax({
       dataType: 'json',
-      url: '/api/sales/contacts.json?page=1&token=' + Pipejump.token,
+      url: url,
       beforeSend: function(jqXHR) {
         jqXHR.setRequestHeader('X-Pipejump-Auth', Pipejump.token)
       }
     }).success(success)
+  },
+  getContacts: function(options, success) {
+    if (!options) options = { page: 1 }
+    this.get('/api/sales/contacts.json?page=1', success)
   }
 }
 
