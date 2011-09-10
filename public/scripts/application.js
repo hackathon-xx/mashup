@@ -49,6 +49,7 @@ $(function() {
   var token = $.cookie('pipejump_token')
 
   if (token) {
+    $('body').append('<script type="IN/Login"></script>')
     Pipejump.token = token
     displayContactList()
     installContactEvents()
