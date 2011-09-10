@@ -90,8 +90,9 @@ var displayLoginBox = function() {
 }
 
 var installContactEvents = function(){
-  $('ul.contacts li.name').live('click', function(){
-     $('ul.contacts li.name').toggle(function(){
+  $('ul.contacts li.name span').live('click', function(){
+    var self = $(this)
+     $('ul.contacts li.name span').toggle(function(){
        var contact_id = $(this).attr('rel');
        if ($( "#contact-"+contact_id).is(':hidden')){
          $( "#contact-"+contact_id ).show()
